@@ -1,3 +1,5 @@
+console.log("Website Kopi Nusa berhasil dimuat.");
+
 const promoButton = document.getElementById("promoButton");
 
 promoButton.addEventListener("click", function () {

@@ -1,131 +1,39 @@
-/* Pengaturan dasar */
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
+  color: #2f2118;
+  background: #f6f0e8;
   font-family: Arial, sans-serif;
-  background-color: #f5f1e8;
-  color: #3e2723;
 }
 
-/* Halaman utama */
 .page {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px 20px;
 }
 
-/* Bagian Hero */
 .hero {
-  text-align: center;
-  background-color: #6f4e37;
+  padding: 36px;
   color: white;
-  padding: 50px 25px;
-  border-radius: 15px;
-  margin-bottom: 25px;
+  background: #6f3b1f;
+  border-radius: 24px;
 }
 
 .eyebrow {
-  font-size: 14px;
-  margin-bottom: 10px;
+  margin: 0 0 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.hero h1 {
-  font-size: 42px;
-  margin: 10px 0;
-}
-
-.hero p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* Judul */
-h2 {
-  margin-top: 0;
-  color: #5d4037;
-}
-
-/* Semua section */
-section:not(.hero) {
-  background-color: white;
-  padding: 25px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Produk */
 .products {
-  padding-left: 20px;
-  line-height: 2;
+  padding-left: 1.2rem;
 }
 
-/* Tombol */
 button {
-  border: none;
   padding: 12px 18px;
-  border-radius: 8px;
-  background-color: #8d6e63;
-  color: white;
-  font-size: 15px;
+  color: #2f2118;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #5d4037;
-}
-
-/* Form */
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 15px;
-}
-
-input:focus {
-  outline: 2px solid #8d6e63;
-}
-
-/* Link PDF */
-a {
-  text-decoration: none;
-}
-
-/* Tampilan HP */
-@media (max-width: 600px) {
-  .page {
-    padding: 12px;
-  }
-
-  .hero {
-    padding: 35px 18px;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  section:not(.hero) {
-    padding: 20px;
-  }
+  background: #ffd166;
+  border: 0;
+  border-radius: 999px;
 }
