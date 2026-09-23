@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient Sederhana -->
+    <radialGradient id="bgSimple" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#23140C"/>
+      <stop offset="100%" stop-color="#0E0704"/>
+    </radialGradient>
+
+    <!-- Warna Aksen Gold -->
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2C94C"/>
+      <stop offset="100%" stop-color="#F2994A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Latar Belakang -->
+  <rect width="800" height="800" rx="40" fill="url(#bgSimple)"/>
+
+  <!-- Lingkaran Bintang / Ring Sederhana -->
+  <circle cx="400" cy="400" r="280" fill="none" stroke="#F2C94C" stroke-width="1.5" opacity="0.15" stroke-dasharray="8 6"/>
+
+  <!-- TEKO LEHER ANGSA (Simple Outline) -->
+  <g stroke="url(#goldLine)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Badan Teko -->
+    <path d="M 180 280 L 260 280 L 275 380 L 165 380 Z" fill="#23140C"/>
+    <!-- Tutup Teko -->
+    <path d="M 205 280 L 235 280 L 220 260 Z" fill="url(#goldLine)"/>
+    <!-- Gagang Teko -->
+    <path d="M 170 295 C 120 295 120 365 168 365"/>
+    <!-- Leher Teko -->
+    <path d="M 268 360 C 320 360 320 230 370 210"/>
+  </g>
+
+  <!-- KUCURAN AIR -->
+  <path d="M 370 215 L 370 290" stroke="#F2C94C" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 4" opacity="0.8"/>
+
+  <!-- V60 DRIPPER & FILTER -->
+  <g stroke="url(#goldLine)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Corong Dripper -->
+    <polygon points="300,290 440,290 395,370 345,370" fill="#180D08"/>
+    <!-- Tatakan Dripper -->
+    <line x1="285" y1="370" x2="455" y2="370" stroke-width="5"/>
+    <!-- Kertas Filter (Isi Dalam) -->
+    <polygon points="312,298 428,298 388,362 352,362" fill="#E0D3C1" stroke="none" opacity="0.9"/>
+  </g>
+
+  <!-- TETESAN KOPI -->
+  <circle cx="370" cy="400" r="4" fill="#F2C94C"/>
+  <circle cx="370" cy="420" r="3" fill="#F2C94C" opacity="0.6"/>
+
+  <!-- SERVER KACA (Karaf) -->
+  <g stroke="url(#goldLine)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Badan Server -->
+    <path d="M 320 440 L 420 440 L 450 560 C 450 580 435 590 370 590 C 305 590 290 580 290 560 Z" fill="#180D08" fill-opacity="0.5"/>
+    <!-- Gagang Server -->
+    <path d="M 430 460 C 480 460 480 550 440 550"/>
+  </g>
+
+  <!-- ISIAN KOPI DALAM SERVER -->
+  <path d="M 302 520 L 438 520 L 446 555 C 444 570 430 584 370 584 C 310 584 296 570 294 555 Z" fill="#3D1E10" stroke="none"/>
+
+  <!-- UAP MINIMALIS -->
+  <path d="M 345 250 C 335 220 355 200 345 170" stroke="#F2C94C" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.3"/>
+  <path d="M 395 250 C 405 220 385 200 395 170" stroke="#F2C94C" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.3"/>
+
+  <!-- TEKS JUDUL MINIMALIS -->
+  <text x="400" y="670" font-family="sans-serif" font-size="20" font-weight="600" fill="#F2C94C" text-anchor="middle" letter-spacing="8" opacity="0.9">PROSES SEDUH</text>
+  <line x1="330" y1="695" x2="470" y2="695" stroke="#F2C94C" stroke-width="2" opacity="0.4"/>
+</svg>
