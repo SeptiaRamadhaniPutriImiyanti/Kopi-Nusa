@@ -58,6 +58,7 @@
           <label><input type="radio" name="topik" value="kerja-sama" /> Kerja sama</label>
         </fieldset>
 
+        <fieldset>
           <legend>Waktu kontak yang diinginkan</legend>
           <label><input type="radio" name="waktu_kontak" value="pagi" required /> Pagi (08.00 - 12.00)</label>
           <label><input type="radio" name="waktu_kontak" value="siang" /> Siang (12.00 - 15.00)</label>
@@ -75,6 +76,10 @@
       <section aria-labelledby="preview-title">
         <h2 id="preview-title">Preview Data</h2>
         <pre id="preview-form" aria-live="polite">Data form akan muncul setelah tombol dikirim.</pre>
+        <div class="status-message status-success" role="status">
+          <span aria-hidden="true">✓</span>
+          <span>Sistem siap menerima input data dari pengguna.</span>
+        </div>
       </section>
     </main>
     <footer class="site-footer">
