@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="500" height="500" fill="#a79061" rx="20"/>
+  
+  <!-- Gelas Kaca -->
+  <path d="M 160 100 L 340 100 L 310 400 C 310 420, 190 420, 190 400 Z" fill="#ffffff" opacity="0.2" stroke="#64748b" stroke-width="6"/>
+  
+  <!-- Lapisan Kopi Cold Brew -->
+  <path d="M 165 140 L 335 140 L 312 395 C 312 410, 188 410, 188 395 Z" fill="#3b1a0e"/>
+  
+  <!-- Lapisan Susu & Gula Aren -->
+  <path d="M 172 260 L 328 260 L 312 395 C 312 410, 188 410, 188 395 Z" fill="#78350f"/>
+  <path d="M 178 320 L 322 320 L 312 395 C 312 410, 188 410, 188 395 Z" fill="#d97706"/>
+
+  <!-- Es Batu -->
+  <rect x="200" y="160" width="45" height="45" rx="8" fill="#ffffff" opacity="0.4" transform="rotate(10 200 160)"/>
+  <rect x="250" y="180" width="40" height="40" rx="8" fill="#ffffff" opacity="0.4" transform="rotate(-15 250 180)"/>
+
+  <!-- Sedotan -->
+  <line x1="290" y1="40" x2="230" y2="380" stroke="#b45309" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Tulisan Cold Brew -->
+  <text x="250" y="460" font-family="sans-serif" font-size="28" font-weight="bold" fill="#451a03" text-anchor="middle">COLD BREW AREN</text>
+</svg>
