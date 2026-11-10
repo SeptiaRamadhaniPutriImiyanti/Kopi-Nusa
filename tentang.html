@@ -4,24 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tentang Kopi Nusa - Website UMKM</title>
- <link rel="stylesheet" href="css/style.css">
- <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
   
- <header class="site-header">
+  <header class="site-header">
     <nav class="nav" aria-label="Navigasi utama">
       <a class="brand" href="index.html">Kopi Nusa</a>
-      <ul>
-    <li><a href="index.html">Beranda</a></li>
-    <li><a aria-current="page" href="tentang.html">Tentang Kami</a></li>
-    <li><a href="produk.html">Produk</a></li>
-    <li><a href="galeri.html">Galeri</a></li>
-    <li><a href="kontak.html">Kontak</a></li>
-  </ul>
-</nav>
-    </div>
+
+      <!-- Tombol Hamburger Menu Mobile -->
+      <button id="menu-toggle" class="hamburger-toggle" aria-label="Buka Menu Navigasi" type="button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Menu Navigasi Utama -->
+      <ul id="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a aria-current="page" href="tentang.html">Tentang Kami</a></li>
+        <li><a href="produk.html">Produk</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main id="main" class="page">

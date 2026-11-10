@@ -97,6 +97,7 @@ a:hover {
   padding: var(--space-3) var(--space-4);
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
+  position: relative; /* Diperlukan agar dropdown menu HP menempel pas di header */
 }
 
 .site-footer {
@@ -355,9 +356,9 @@ audio {
 /* Navigasi Mobile Baseline */
 .nav {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav ul {
@@ -429,7 +430,7 @@ audio {
 }
 
 /* ==========================================================================
-   9. BREAKPOINT BERBASIS KONTEN (LANGKAH 7 P07)
+   9. BREAKPOINT BERBASIS KONTEN (LANGKAH 7 P07 & P10 STYLES)
    ========================================================================== */
 @media (min-width: 42rem) {
   .nav ul {
@@ -503,3 +504,65 @@ audio {
   color: #991b1b;
 }
 
+#produk-unggulan {
+  font-weight: 700;
+  color: var(--color-primary, #6f3b1f);
+}
+
+/* ==========================================================================
+   10. STYLING HAMBURGER MENU RESPONSIF MOBILE
+   ========================================================================== */
+/* Reset Tombol Hamburger agar tidak terpengaruh style button global */
+.hamburger-toggle {
+  display: none !important;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 0 !important;
+  box-shadow: none !important;
+  z-index: 1000;
+}
+
+/* 3 Garis Cokelat Hamburger Menu */
+.hamburger-toggle .bar {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: var(--color-primary-strong, #3b1e0e) !important;
+  border-radius: 2px;
+}
+
+/* Aturan khusus ketika dibuka di layar HP (lebar <= 768px) */
+@media (max-width: 768px) {
+  .hamburger-toggle {
+    display: flex !important; /* Tombol baru muncul di HP */
+  }
+
+  .nav ul#nav-menu {
+    display: none; /* Sembunyikan daftar menu datar di HP */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface, #ffffff);
+    border-bottom: 1px solid var(--color-border, #dccbbc);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-3);
+    margin: 0;
+    z-index: 999;
+  }
+
+  .nav ul#nav-menu.active {
+    display: flex; /* Daftar menu muncul saat ikon diklik */
+  }
+
+  .nav ul#nav-menu li {
+    text-align: center;
+    padding: var(--space-1) 0;
+  }
+}

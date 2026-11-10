@@ -1,5 +1,25 @@
 "use strict";
 
+// ==========================================================================
+// FITUR HAMBURGER MENU MOBILE (AKTIF DI SEMUA HALAMAN)
+// ==========================================================================
+function initNavbarMobile() {
+  const menuToggle = document.querySelector("#menu-toggle");
+  const navMenu = document.querySelector("#nav-menu");
+
+  // Guard Clause: Mencegah error jika halaman tidak memiliki menu
+  if (!menuToggle || !navMenu) return;
+
+  // Toggle class 'active' saat tombol diklik
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+}
+
+// ==========================================================================
+// PRAKTIKUM P10: DATA & FUNCTION CONTRACTS
+// ==========================================================================
+
 // 1. Data minimal 4 produk UMKM dengan properti tambahan 'unggulan' dan 'deskripsi'
 const produkUmkm = [
   { 
@@ -11,7 +31,7 @@ const produkUmkm = [
     deskripsi: "Aroma buah dan tingkat keasaman seimbang." 
   },
   { 
-    nama: "Kopi Senja Nusa", 
+    nama: "Robusta Temanggung", 
     kategori: "Kopi", 
     harga: 65000, 
     stok: 4, 
@@ -21,7 +41,7 @@ const produkUmkm = [
   { 
     nama: "Cold Brew Aren", 
     kategori: "Kopi", 
-    harga: 22000, 
+    harga: 22000,  
     stok: 8, 
     unggulan: true, 
     deskripsi: "Minuman kopi dingin manis aren alami." 
@@ -36,20 +56,19 @@ const produkUmkm = [
   }
 ];
 
-// Cetak data bentuk tabel ke Console DevTools
-console.table(produkUmkm);
+// 2. Function contract: Formatter Angka ke Format Rupiah
+function formatRupiah(nilai) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(nilai);
+}
 
-// 2. Formatter Angka ke Format Rupiah
-const formatRupiah = new Intl.NumberFormat("id-ID", {
-  style: "currency",
-  currency: "IDR",
-  maximumFractionDigits: 0
-});
-
-// 3. Conditional 1: Status stok produk
+// 3. Function contract: Status Stok Produk
 function statusStok(stok) {
-  if (stok === 0) {
-    return { label: "Habis", className: "empty" };
+  if (stok <= 0) {
+    return { label: "Habis", className: "warning" };
   }
   if (stok <= 5) {
     return { label: "Stok terbatas", className: "warning" };
@@ -57,7 +76,7 @@ function statusStok(stok) {
   return { label: "Tersedia", className: "" };
 }
 
-// 4. Conditional Switch: Label Kategori
+// 4. Function contract: Label Kategori
 function labelKategori(kategori) {
   switch (kategori) {
     case "Kopi":
@@ -69,49 +88,62 @@ function labelKategori(kategori) {
   }
 }
 
-// 5. Fungsi Render Data ke DOM
+// 5. Function contract: Buat Kartu Produk HTML (Modular)
+function buatKartuProduk(produk) {
+  const status = statusStok(produk.stok);
+  const kategori = labelKategori(produk.kategori);
+  const labelAksi = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
+  const badgeUnggulan = produk.unggulan ? `<span class="product-badge">Unggulan</span>` : "";
+
+  return `
+    <article class="js-product-card">
+      ${badgeUnggulan}
+      <h3>${produk.nama}</h3>
+      <p><em>${kategori}</em></p>
+      <p>${produk.deskripsi}</p>
+      <p class="price">${formatRupiah(produk.harga)}</p>
+      <span class="stock-badge ${status.className}">${status.label}</span>
+      <p><strong>${labelAksi}</strong></p>
+    </article>
+  `;
+}
+
+// 6. Function utama: Render Produk Modular dengan Array Methods
 function renderProduk() {
   const grid = document.querySelector("#produk-dinamis");
   const ringkasan = document.querySelector("#produk-ringkasan");
+  const unggulan = document.querySelector("#produk-unggulan");
 
-  // Guard Clause: Mencegah error pada halaman selain produk.html
-  if (!grid || !ringkasan) {
+  // Guard Clause P10: Mencegah error jika elemen target render belum lengkap
+  if (!grid || !ringkasan || !unggulan) {
+    console.warn("Target render produk belum lengkap.");
     return;
   }
 
-  let jumlahTersedia = 0;
-  let markup = "";
+  // Debugging log dengan forEach (P10)
+  produkUmkm.forEach((produk) => {
+    console.log("Debug produk:", produk.nama, "stok:", produk.stok);
+  });
 
-  for (const produk of produkUmkm) {
-    const status = statusStok(produk.stok);
-    const kategori = labelKategori(produk.kategori);
-    
-    // Conditional 2 (Ternary): Label Aksi berdasarkan stok
-    const labelAksi = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
-    
-    // Conditional tambahan (Pengayaan): Badge produk unggulan
-    const badgeUnggulan = produk.unggulan ? `<span class="product-badge">Unggulan</span>` : "";
+  // Array Methods P10: filter, find, map
+  const produkTersedia = produkUmkm.filter((produk) => produk.stok > 0);
+  const produkUnggulan = produkUmkm.find((produk) => produk.unggulan === true);
+  const markupProduk = produkTersedia.map(buatKartuProduk).join("");
 
-    if (produk.stok > 0) {
-      jumlahTersedia = jumlahTersedia + 1;
-    }
+  // Update DOM
+  grid.innerHTML = markupProduk;
+  ringkasan.textContent = `${produkTersedia.length} produk tersedia dari ${produkUmkm.length} data.`;
+  unggulan.textContent = produkUnggulan
+    ? `Produk unggulan: ${produkUnggulan.nama}`
+    : "Belum ada produk unggulan.";
 
-    markup += `
-      <article class="js-product-card">
-        ${badgeUnggulan}
-        <h3>${produk.nama}</h3>
-        <p><em>${kategori}</em></p>
-        <p>${produk.deskripsi}</p>
-        <p class="price">${formatRupiah.format(produk.harga)}</p>
-        <span class="stock-badge ${status.className}">${status.label}</span>
-        <p><strong>${labelAksi}</strong></p>
-      </article>
-    `;
-  }
-
-  grid.innerHTML = markup;
-  ringkasan.textContent = `${jumlahTersedia} produk tersedia dari ${produkUmkm.length} data.`;
+  console.table(produkUmkm);
 }
 
-// Jalankan fungsi render ketika dokumen HTML selesai diurai
-document.addEventListener("DOMContentLoaded", renderProduk);
+// ==========================================================================
+// INISIALISASI SAAT DOM SELESAI DIMUAT
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+  initNavbarMobile(); // Jalankan Hamburger Menu di SEMUA halaman
+  renderProduk();      // Jalankan Render Produk P10 (Aman di-guard jika bukan di produk.html)
+});
