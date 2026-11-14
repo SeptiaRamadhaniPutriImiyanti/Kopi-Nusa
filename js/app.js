@@ -88,62 +88,108 @@ function labelKategori(kategori) {
   }
 }
 
-// 5. Function contract: Buat Kartu Produk HTML (Modular)
-function buatKartuProduk(produk) {
-  const status = statusStok(produk.stok);
-  const kategori = labelKategori(produk.kategori);
-  const labelAksi = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
-  const badgeUnggulan = produk.unggulan ? `<span class="product-badge">Unggulan</span>` : "";
+// ==========================================================================
+// PRAKTIKUM P11-E04-E05: DOM SELECTION DAN GUARD
+// ==========================================================================
+const produkGrid = document.querySelector("#produk-dinamis");
+const produkStatus = document.querySelector("#produk-ringkasan");
+const tombolFilter = document.querySelectorAll("[data-filter]");
 
-  return `
-    <article class="js-product-card">
-      ${badgeUnggulan}
-      <h3>${produk.nama}</h3>
-      <p><em>${kategori}</em></p>
-      <p>${produk.deskripsi}</p>
-      <p class="price">${formatRupiah(produk.harga)}</p>
-      <span class="stock-badge ${status.className}">${status.label}</span>
-      <p><strong>${labelAksi}</strong></p>
-    </article>
-  `;
+//Langkah E05: Function buatElementProduk dengan createElement & textContect
+function buatElemenProduk(produk) {
+  const card = document.createElement("article");
+  card.classList.add("product-card");
+
+  const title = document.createElement("h3");
+  title.textContent = produk.nama;
+
+  const category = document.createElement("p");
+  category.classList.add("category-note");
+  category.textContent = produk.kategori;
+
+  const price = document.createElement("p");
+  price.classList.add("price");
+  price.textContent = formatRupiah(produk.harga);
+
+  const stock = document.createElement("span");
+  const status = statusStok(produk.stok);
+  stock.classList.add("stock-badge");
+  if (status.className) {
+    stock.classList.add(status.className);
+  }
+  stock.textContent = status.label;
+
+  card.append(title, category, price, stock);
+
+// Langkah E08: uji remove element sementara
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.textContent = "Sembunyikan";
+  removeButton.classList.add("ghost-button");
+
+  removeButton.addEventListener("click", () => {
+    card.remove();
+    produkStatus.textContent = "Satu kartu disembunyikan dari tampilan sementara.";
+  });
+
+card.append(removeButton);
+  return card;
 }
 
-// 6. Function utama: Render Produk Modular dengan Array Methods
-function renderProduk() {
-  const grid = document.querySelector("#produk-dinamis");
-  const ringkasan = document.querySelector("#produk-ringkasan");
-  const unggulan = document.querySelector("#produk-unggulan");
+// ==========================================================================
+// PRAKTIKUM P11-E06: Function buatEmptyState& Function utama renderProduk
+// ==========================================================================
+function buatEmptyState(kategori) {
+  const empty = document.createElement("p");
+  empty.classList.add("empty-state");
+  empty.textContent = `Belum ada produk pada kategori ${kategori}.`;
+  return empty;
+}
 
-  // Guard Clause P10: Mencegah error jika elemen target render belum lengkap
-  if (!grid || !ringkasan || !unggulan) {
-    console.warn("Target render produk belum lengkap.");
+function renderProduk(kategoriAktif = "Semua") {
+  if (!produkGrid || !produkStatus) {
+    console.warn("Target render produk tidak ditemukan.");
     return;
   }
 
-  // Debugging log dengan forEach (P10)
-  produkUmkm.forEach((produk) => {
-    console.log("Debug produk:", produk.nama, "stok:", produk.stok);
+  const produkTampil = kategoriAktif === "Semua"
+    ? produkUmkm
+    : produkUmkm.filter((produk) => produk.kategori === kategoriAktif);
+
+  produkGrid.replaceChildren();
+
+  if (produkTampil.length === 0) {
+    produkGrid.append(buatEmptyState(kategoriAktif));
+    produkStatus.textContent = "0 produk ditemukan.";
+    return;
+  }
+
+  produkTampil.forEach((produk) => {
+    produkGrid.append(buatElemenProduk(produk));
   });
 
-  // Array Methods P10: filter, find, map
-  const produkTersedia = produkUmkm.filter((produk) => produk.stok > 0);
-  const produkUnggulan = produkUmkm.find((produk) => produk.unggulan === true);
-  const markupProduk = produkTersedia.map(buatKartuProduk).join("");
-
-  // Update DOM
-  grid.innerHTML = markupProduk;
-  ringkasan.textContent = `${produkTersedia.length} produk tersedia dari ${produkUmkm.length} data.`;
-  unggulan.textContent = produkUnggulan
-    ? `Produk unggulan: ${produkUnggulan.nama}`
-    : "Belum ada produk unggulan.";
-
-  console.table(produkUmkm);
+  produkStatus.textContent = `${produkTampil.length} produk ditampilkan.`;
 }
+
+// ==========================================================================
+// PRAKTIKUM P11-E07: pasang event listerner dan ClassList untuk tombol filter
+// ==========================================================================
+tombolFilter.forEach((tombol) => {
+  tombol.addEventListener("click", (event) => {
+    const tombolAktif = event.currentTarget;
+    const kategori = tombolAktif.dataset.filter;
+
+    tombolFilter.forEach((item) => item.classList.remove("is-active"));
+    tombolAktif.classList.add("is-active");
+
+    renderProduk(kategori);
+  });
+});
 
 // ==========================================================================
 // INISIALISASI SAAT DOM SELESAI DIMUAT
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
   initNavbarMobile(); // Jalankan Hamburger Menu di SEMUA halaman
-  renderProduk();      // Jalankan Render Produk P10 (Aman di-guard jika bukan di produk.html)
+  renderProduk();     // Jalankan uji selector & guard Langkah 4
 });
