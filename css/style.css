@@ -472,7 +472,7 @@ audio {
 
 .js-product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: var(--space-4);
 }
 
@@ -604,4 +604,24 @@ audio {
   padding: 1rem;
   background: #ffffff;
   color: #64748b;
+}
+
+.field-error,
+.form-feedback {
+  margin: 0;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.field-error {
+  min-height: 1.4rem;
+}
+
+[aria-invalid="true"] {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 3px rgb(185 28 28 / 15%);
+}
+
+.form-feedback.success {
+  color: #166534;
 }

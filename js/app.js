@@ -124,7 +124,7 @@ function buatElemenProduk(produk) {
 // Langkah E08: uji remove element sementara
   const removeButton = document.createElement("button");
   removeButton.type = "button";
-  removeButton.textContent = "Sembunyikan";
+  removeButton.textContent = "Sembunyikan";2
   removeButton.classList.add("ghost-button");
 
   removeButton.addEventListener("click", () => {
@@ -148,7 +148,7 @@ function buatEmptyState(kategori) {
 
 function renderProduk(kategoriAktif = "Semua") {
   if (!produkGrid || !produkStatus) {
-    console.warn("Target render produk tidak ditemukan.");
+    // console.warn("Target render produk tidak ditemukan.");
     return;
   }
 
