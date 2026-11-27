@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Produk Kopi Nusa - Website UMKM</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/app.js" defer></script>
+  <script type="module" src="js/catalog-api.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Lompati ke konten utama</a>
@@ -36,12 +36,13 @@
     <h1>Produk Kopi Nusa</h1>
     <p>Pilih produk sesuai kebutuhan seduh harian, kantor, atau hadiah.</p>
 
-    <!-- Langkah 2 P11-02: Target Render & Filter Kategori JavaScript -->
+    <!-- Langkah 2 P11-02 dan P13-04: Target Render & Filter Kategori JavaScript -->
     <section class="section" aria-labelledby="produk-dinamis-title">
       <div class="section-header">
         <h2 id="produk-dinamis-title">Produk dari Data Lokal</h2>
-        <p id="produk-ringkasan">Data produk akan dimuat melalui JavaScript.</p>
-        <p id="produk-unggulan">Produk unggulan akan ditentukan melalui JavaScript.</p>
+        <p id="catalog-status" class="catalog-status" aria-live="polite">Produk belum dimuat.</p>
+        <p id="produk-ringkasan">Menunggu data produk.</p>
+        <p id="produk-unggulan">Produk unggulan akan muncul setelah data dimuat.</p>
       </div>
 
       <div class="filter-bar" aria-label="Filter kategori produk">

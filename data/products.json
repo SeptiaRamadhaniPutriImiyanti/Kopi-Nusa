@@ -1,0 +1,39 @@
+[
+  {
+    "id": "arabika-gayo",
+    "name": "Arabika Gayo",
+    "category": "Kopi",
+    "price": 85000,
+    "stock": 12,
+    "featured": true,
+    "description": "Aroma buah dan tingkat keasaman seimbang."
+  },
+  {
+    "id": "robusta-temanggung",
+    "name": "Robusta Temanggung",
+    "category": "Kopi",
+    "price": 65000,
+    "stock": 4,
+    "featured": false,
+    "description": "Rasa murni dengan body yang tebal dan aroma cokelat."
+  },
+  {
+    "id": "cold-brew-aren",
+    "name": "Cold Brew Aren",
+    "category": "Kopi",
+    "price": 22000,
+    "stock": 8,
+    "featured": true,
+    "description": "Minuman kopi dingin manis aren alami."
+  },
+  {
+    "id": "paket-seduh",
+    "name": "Paket Seduh",
+    "category": "Bundling",
+    "price": 125000,
+    "stock": 0,
+    "featured": false,
+    "description": "Paket lengkap alat seduh dan biji kopi pilihan."
+  }
+]
+
